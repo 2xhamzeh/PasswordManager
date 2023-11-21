@@ -35,6 +35,7 @@ def saveAndExit(key):
     conn = sqlite3.connect("passwords.db")
     cur = conn.cursor()
     cur.execute("delete from passwords")
+    # We randomize the list so its harder to crack the key
     shuffle(listOfPasswords)
     for p in listOfPasswords:
         cur.execute('insert into passwords values(?,?,?)', (unicodeCipher.cipher(
